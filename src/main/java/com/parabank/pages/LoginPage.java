@@ -35,4 +35,24 @@ public class LoginPage {
     public void clickRegister() {
         linkRegister.click();
     }
+
+    public void enterUsername(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'enterUsername'");
+    }
+
+    public void enterUsername(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'enterUsername'");
+    }
+
+    public void enterPassword(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'enterPassword'");
+    }
+
+    public void clickLogin() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'clickLogin'");
+    }
 }
