@@ -26,7 +26,7 @@ public class LoginPage {
     @FindBy(linkText = "Register")
     WebElement linkRegister;
 
-    public void open() {
+    public void goTo() {
         driver.get("https://parabank.parasoft.com/parabank/index.htm");
     }
 

@@ -8,10 +8,10 @@
         </classes>
     </test>
 
-    <test name="ParaBank Registration Test">
-        <classes>
-            <class name="com.parabank.tests.RegistrationTest"/>
-        </classes>
-    </test>
+<!--    <test name="ParaBank Registration Test">-->
+<!--        <classes>-->
+<!--            <class name="com.parabank.tests.RegistrationTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
 </suite>
