@@ -1,0 +1,26 @@
+{
+  "loginTests": [
+    { "scenario": "Positive: Valid Admin", "user": "john", "pass": "demo", "expected": "Success" },
+    { "scenario": "Negative: Incorrect Password", "user": "john", "pass": "wrong123", "expected": "Failure" },
+    { "scenario": "Negative: Non-existent User", "user": "ghost_user_99", "pass": "pass123", "expected": "Failure" },
+    { "scenario": "Boundary: Empty Fields", "user": "", "pass": "", "expected": "Failure" },
+    { "scenario": "Edge: SQL Injection Attempt", "user": "' OR '1'='1", "pass": "admin", "expected": "Failure" },
+    { "scenario": "Boundary: Max Length Username", "user": "this_is_a_very_long_username_exceeding_fifty_chars_test", "pass": "pass", "expected": "Failure" },
+    { "scenario": "Positive: Case Sensitivity Check", "user": "JOHN", "pass": "demo", "expected": "Failure" },
+    { "scenario": "Edge: Special Characters", "user": "user!@#$", "pass": "pass%^&*", "expected": "Failure" },
+    { "scenario": "Negative: Leading/Trailing Spaces", "user": " john ", "pass": "demo", "expected": "Failure" },
+    { "scenario": "Positive: Numeric Username", "user": "12345", "pass": "12345", "expected": "Success" }
+  ],
+  "registrationTests": [
+    { "scenario": "Positive: Complete Registration", "firstName": "Alice", "lastName": "Smith", "address": "123 Lane", "city": "NYC", "state": "NY", "zip": "10001", "ssn": "111-22-333", "user": "alice_test", "pass": "Pass123!", "confirm": "Pass123!", "expected": "Success" },
+    { "scenario": "Negative: Password Mismatch", "firstName": "Bob", "lastName": "Jones", "address": "456 Ave", "city": "Miami", "state": "FL", "zip": "33101", "ssn": "444-55-666", "user": "bob_test", "pass": "Pass1", "confirm": "Pass2", "expected": "Failure" },
+    { "scenario": "Boundary: Missing Required SSN", "firstName": "Charlie", "lastName": "Brown", "address": "789 St", "city": "LA", "state": "CA", "zip": "90210", "ssn": "", "user": "charlie_test", "pass": "Pass123!", "confirm": "Pass123!", "expected": "Failure" },
+    { "scenario": "Edge: Numeric City Name", "firstName": "Dan", "lastName": "White", "address": "St 1", "city": "12345", "state": "TX", "zip": "77001", "ssn": "000-00-111", "user": "dan_test", "pass": "Pass123!", "confirm": "Pass123!", "expected": "Success" },
+    { "scenario": "Boundary: Single Char Name", "firstName": "A", "lastName": "B", "address": "X", "city": "Y", "state": "Z", "zip": "0", "ssn": "1", "user": "ab", "pass": "p", "confirm": "p", "expected": "Success" },
+    { "scenario": "Negative: Existing Username", "firstName": "John", "lastName": "Doe", "address": "123 Lane", "city": "NYC", "state": "NY", "zip": "10001", "ssn": "111-22-333", "user": "john", "pass": "demo", "confirm": "demo", "expected": "Failure" },
+    { "scenario": "Edge: Unicode/International Characters", "firstName": "Müeller", "lastName": "Štefan", "address": "Straße 10", "city": "Berlin", "state": "BE", "zip": "10115", "ssn": "999-99-999", "user": "muller_1", "pass": "Pass123!", "confirm": "Pass123!", "expected": "Success" },
+    { "scenario": "Boundary: ZIP with Letters", "firstName": "Eve", "lastName": "Green", "address": "1 Park", "city": "London", "state": "UK", "zip": "ABCDE", "ssn": "222-33-444", "user": "eve_test", "pass": "Pass123!", "confirm": "Pass123!", "expected": "Failure" },
+    { "scenario": "Negative: All Fields Empty", "firstName": "", "lastName": "", "address": "", "city": "", "state": "", "zip": "", "ssn": "", "user": "", "pass": "", "confirm": "", "expected": "Failure" },
+    { "scenario": "Positive: Very Long Field Values", "firstName": "Christopher-Maximillian", "lastName": "Montgomery-Richardson", "address": "Suite 500, Floor 10, Building B", "city": "San Francisco", "state": "California", "zip": "94105-0001", "ssn": "555-55-555", "user": "long_user_name_test", "pass": "LongPass123456789!", "confirm": "LongPass123456789!", "expected": "Success" }
+  ]
+}
