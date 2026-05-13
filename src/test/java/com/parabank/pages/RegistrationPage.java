@@ -5,10 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class RegistrationPage {
+public class RegistrationPage extends BasePage{
     WebDriver driver;
 
     public RegistrationPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -48,54 +49,6 @@ public class RegistrationPage {
 
     @FindBy(xpath = "//input[@value='Register']")
     WebElement btnRegister;
-
-    public void enterFirstName(String firstName) {
-        txtFirstName.sendKeys(firstName);
-    }
-
-    public void enterLastName(String lastName) {
-        txtLastName.sendKeys(lastName);
-    }
-
-    public void enterAddress(String address) {
-        txtAddress.sendKeys(address);
-    }
-
-    public void enterCity(String city) {
-        txtCity.sendKeys(city);
-    }
-
-    public void enterState(String state) {
-        txtState.sendKeys(state);
-    }
-
-    public void enterZipCode(String zipCode) {
-        txtZipCode.sendKeys(zipCode);
-    }
-
-    public void enterPhone(String phone) {
-        txtPhone.sendKeys(phone);
-    }
-
-    public void enterSSN(String ssn) {
-        txtSSN.sendKeys(ssn);
-    }
-
-    public void enterUsername(String username) {
-        txtUsername.sendKeys(username);
-    }
-
-    public void enterPassword(String password) {
-        txtPassword.sendKeys(password);
-    }
-
-    public void enterConfirmPassword(String confirmPassword) {
-        txtConfirmPassword.sendKeys(confirmPassword);
-    }
-
-    public void clickRegister() {
-        btnRegister.click();
-    }
 
     public void register(String firstName, String lastName, String address, String city, String state, String zipCode, String phone, String ssn, String username, String password, String confirmPassword) {
         txtFirstName.sendKeys(firstName);

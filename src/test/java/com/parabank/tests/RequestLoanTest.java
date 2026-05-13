@@ -10,16 +10,7 @@ public class RequestLoanTest extends BaseTest {
     LoginPage loginPage;
     RequestLoanPage requestLoanPage;
 
-    @BeforeMethod
-    public void pageSetUp() {
-        driver.get("https://parabank.parasoft.com/parabank/index.htm");
-        loginPage = new LoginPage(driver);
-        requestLoanPage = new RequestLoanPage(driver);
-        loginPage.enterUsername("johndoe123");
-        loginPage.enterPassword("password123");
-        loginPage.clickLogin();
-        driver.get("https://parabank.parasoft.com/parabank/requestloan.htm");
-    }
+
 
     @Test
     public void testRequestLoan() {

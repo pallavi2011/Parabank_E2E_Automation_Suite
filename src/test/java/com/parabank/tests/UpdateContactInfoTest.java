@@ -10,16 +10,6 @@ public class UpdateContactInfoTest extends BaseTest {
     LoginPage loginPage;
     UpdateContactInfoPage updateContactInfoPage;
 
-    @BeforeMethod
-    public void pageSetUp() {
-        driver.get("https://parabank.parasoft.com/parabank/index.htm");
-        loginPage = new LoginPage(driver);
-        updateContactInfoPage = new UpdateContactInfoPage(driver);
-        loginPage.enterUsername("johndoe123");
-        loginPage.enterPassword("password123");
-        loginPage.clickLogin();
-        driver.get("https://parabank.parasoft.com/parabank/updateprofile.htm");
-    }
 
     @Test
     public void testUpdateContactInfo() {

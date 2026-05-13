@@ -38,20 +38,5 @@ public class LoginPage extends BasePage{
         click(btnLogin);
     }
 
-    public void clickRegister() {
-        linkRegister.click();
-    }
 
-    public void enterUsername(String username) {
-        txtUsername.sendKeys(username);
-    }
-
-    public void enterPassword(String password) {
-        txtPassword.sendKeys(password);
-    }
-
-
-    public void clickLogin() {
-        btnLogin.click();
-    }
 }

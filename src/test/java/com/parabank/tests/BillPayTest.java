@@ -10,16 +10,7 @@ public class BillPayTest extends BaseTest {
     LoginPage loginPage;
     BillPayPage billPayPage;
 
-    @BeforeMethod
-    public void pageSetUp() {
-        driver.get("https://parabank.parasoft.com/parabank/index.htm");
-        loginPage = new LoginPage(driver);
-        billPayPage = new BillPayPage(driver);
-        loginPage.enterUsername("johndoe123");
-        loginPage.enterPassword("password123");
-        loginPage.clickLogin();
-        driver.get("https://parabank.parasoft.com/parabank/billpay.htm");
-    }
+
 
     @Test
     public void testBillPayment() {
