@@ -5,6 +5,7 @@ import com.parabank.base.BaseTest;
 import com.parabank.pages.LoginPage;
 import com.parabank.utils.JsonFileReader;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -27,30 +28,31 @@ public class LoginTest extends BaseTest {
         System.out.println("Executing: " + scenario);
         loginPage = new LoginPage(driver);
         // 1. Actions
-        loginPage.enterUsername(user);
-        loginPage.enterPassword(pass);
-        loginPage.clickLogin();
+        loginPage.login(user, pass);
 
         // 2. Logic to handle both Positive and Negative scenarios
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         if (expected.equalsIgnoreCase("Success")) {
-            // Wait specifically for the title to change to the Overview page
-            boolean isSuccess = wait.until(ExpectedConditions.titleContains("Accounts Overview"));
-            Assert.assertTrue(isSuccess, "FAILED: Login was expected to succeed but didn't for: " + scenario);
+            // 1. Replaced wait.until with generic waitForCondition
+            boolean isSuccess = loginPage.waitForCondition(ExpectedConditions.titleContains("Accounts Overview"));
+            Assert.assertTrue(isSuccess, "FAILED: Success expected but 'Accounts Overview' not found for: " + scenario);
+
         } else if (scenario.contains("SQL Injection")) {
-            // Check if we are on the 'Security' page OR see an error message
-            boolean blocked = driver.getCurrentUrl().contains("security")
-                    || driver.getPageSource().contains("Access Denied")
-                    || driver.getPageSource().contains("error");
+            // We added a 4th condition for the Cloudflare verification message
+            boolean blocked = loginPage.waitForCondition(ExpectedConditions.or(
+                    ExpectedConditions.urlContains("security"),
+                    ExpectedConditions.textToBePresentInElementLocated(By.tagName("body"), "Access Denied"),
+                    ExpectedConditions.textToBePresentInElementLocated(By.tagName("body"), "security verification"),
+                    ExpectedConditions.presenceOfElementLocated(By.className("error"))
+            ));
 
-            Assert.assertTrue(blocked, "SQL Injection was NOT blocked by the security gateway!");
-        }else {
-            // Wait specifically for the error message element to appear
-            // ParaBank error messages usually appear in a specific 'p' or 'span' tag
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.className("error")));
-            System.out.println("Passed: Error message caught for negative case.");
+            Assert.assertTrue(blocked, "SQL Injection was NOT blocked! No security gate or error detected.");
+        } else {
+            // 3. Replaced wait.until for standard negative cases
+            WebElement errorElement = loginPage.waitForCondition(ExpectedConditions.presenceOfElementLocated(By.className("error")));
+            Assert.assertNotNull(errorElement, "Passed: Error message caught for negative case: " + scenario);
         }
-
     }
 }
+

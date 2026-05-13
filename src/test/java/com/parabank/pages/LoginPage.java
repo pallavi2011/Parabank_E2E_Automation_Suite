@@ -6,10 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
     WebDriver driver;
 
     public LoginPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -31,9 +32,10 @@ public class LoginPage {
     }
 
     public void login(String user, String pass) {
-        txtUsername.sendKeys(user);
-        txtPassword.sendKeys(pass);
-        btnLogin.click();
+        // Using the wrappers from BasePage
+        sendKeys(txtUsername, user);
+        sendKeys(txtPassword, pass);
+        click(btnLogin);
     }
 
     public void clickRegister() {
