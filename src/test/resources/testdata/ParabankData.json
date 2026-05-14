@@ -161,5 +161,21 @@
       "confirm": "LongPass123456789!",
       "expected": "Success"
     }
+  ],
+
+  "billPayTests": [
+    { "scenario": "Positive: Standard Utility", "payeeName": "Electric Company", "address": "123 Energy Way", "city": "Power City", "state": "CA", "zip": "90210", "phone": "800-555-1212", "accountNumber": "12345", "verifyAccount": "12345", "amount": "150.00", "fromAccount": "12345", "expected": "Success" },
+    { "scenario": "Negative: Account Mismatch", "payeeName": "Water Dept", "address": "456 Splash St", "city": "Aqua", "state": "FL", "zip": "33101", "phone": "305-555-0199", "accountNumber": "98765", "verifyAccount": "11111", "amount": "45.25", "fromAccount": "12345", "expected": "Failure" },
+    { "scenario": "Boundary: Min Amount", "payeeName": "Minimalist Inc", "address": "1 Cent Ave", "city": "Penny", "state": "TX", "zip": "77001", "phone": "713-555-0001", "accountNumber": "55555", "verifyAccount": "55555", "amount": "0.01", "fromAccount": "54321", "expected": "Success" },
+    { "scenario": "Negative: Empty Amount", "payeeName": "Gas Co", "address": "789 Fuel Rd", "city": "Houston", "state": "TX", "zip": "77002", "phone": "713-555-9999", "accountNumber": "67890", "verifyAccount": "67890", "amount": "", "fromAccount": "12345", "expected": "Failure" },
+    { "scenario": "Edge: Zero Dollar", "payeeName": "Zero Corp", "address": "000 Null Path", "city": "Void", "state": "OH", "zip": "44101", "phone": "216-555-0000", "accountNumber": "00000", "verifyAccount": "00000", "amount": "0.00", "fromAccount": "12345", "expected": "Failure" },
+    { "scenario": "Boundary: Long Acc #", "payeeName": "Big Bank", "address": "999 Vault Dr", "city": "Fort Knox", "state": "KY", "zip": "40121", "phone": "502-555-8888", "accountNumber": "12345678901234567890", "verifyAccount": "12345678901234567890", "amount": "10.00", "fromAccount": "12345", "expected": "Success" },
+    { "scenario": "Negative: Non-Numeric", "payeeName": "Internet Provider", "address": "101 Fiber Blvd", "city": "Silicon", "state": "CA", "zip": "94043", "phone": "650-555-1010", "accountNumber": "44332", "verifyAccount": "44332", "amount": "ABC.DE", "fromAccount": "12345", "expected": "Failure" },
+    { "scenario": "Edge: Special Chars", "payeeName": "Lowe's & Home-D!", "address": "55 Tools Ln", "city": "Build", "state": "IL", "zip": "60601", "phone": "312-555-4433", "accountNumber": "77889", "verifyAccount": "77889", "amount": "250.75", "fromAccount": "54321", "expected": "Success" },
+    { "scenario": "Negative: Missing Name", "payeeName": "", "address": "123 Hidden St", "city": "Nowhere", "state": "NM", "zip": "87501", "phone": "505-555-0001", "accountNumber": "11223", "verifyAccount": "11223", "amount": "50.00", "fromAccount": "12345", "expected": "Failure" },
+    { "scenario": "Positive: Intl Format", "payeeName": "Global Services", "address": "Via Roma 10", "city": "Rome", "state": "RM", "zip": "00100", "phone": "+39 06 123456", "accountNumber": "INTL9988", "verifyAccount": "INTL9988", "amount": "500.00", "fromAccount": "12345", "expected": "Success" }
   ]
+
 }
+
+

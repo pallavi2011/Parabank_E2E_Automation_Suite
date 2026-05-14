@@ -4,9 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-public class OpenAccountPage {
+public class OpenAccountPage extends BasePage {
      WebDriver driver;
 
     @FindBy(id = "type")
@@ -22,27 +23,31 @@ public class OpenAccountPage {
     private WebElement newAccountIdLink;
 
     public OpenAccountPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
 
-    public void selectAccountType(String accountType) {
+    public OpenAccountPage selectAccountType(String accountType) {
         Select select = new Select(accountTypeDropdown);
         select.selectByVisibleText(accountType);
+        return this;
     }
 
 
-    public void selectFromAccount(String accountId) {
+    public OpenAccountPage selectFromAccount(String accountId) {
         Select select = new Select(fromAccountDropdown);
         select.selectByVisibleText(accountId);
+        return this;
     }
 
-    public void clickOpenNewAccount() {
+    public OpenAccountPage clickOpenNewAccount() {
         openNewAccountButton.click();
+        return this;
     }
 
     public String getNewAccountId() {
-        return newAccountIdLink.getText();
+        return waitForCondition(ExpectedConditions.visibilityOf(newAccountIdLink)).getText();
     }
 }

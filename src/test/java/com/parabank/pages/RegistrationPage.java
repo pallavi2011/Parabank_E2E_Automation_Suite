@@ -50,7 +50,7 @@ public class RegistrationPage extends BasePage{
     @FindBy(xpath = "//input[@value='Register']")
     WebElement btnRegister;
 
-    public void register(String firstName, String lastName, String address, String city, String state, String zipCode, String phone, String ssn, String username, String password, String confirmPassword) {
+    public AccountsOverviewPage register(String firstName, String lastName, String address, String city, String state, String zipCode, String phone, String ssn, String username, String password, String confirmPassword) {
         txtFirstName.sendKeys(firstName);
         txtLastName.sendKeys(lastName);
         txtAddress.sendKeys(address);
@@ -63,5 +63,7 @@ public class RegistrationPage extends BasePage{
         txtPassword.sendKeys(password);
         txtConfirmPassword.sendKeys(confirmPassword);
         btnRegister.click();
+        return new AccountsOverviewPage(driver);
+
     }
 }

@@ -4,10 +4,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-public class TransferFundsPage {
+public class TransferFundsPage extends BasePage {
     private WebDriver driver;
+
+    public TransferFundsPage(WebDriver driver) {
+        super(driver);
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
 
     @FindBy(id = "amount")
     private WebElement amountInput;
@@ -24,31 +31,33 @@ public class TransferFundsPage {
     @FindBy(xpath = "//h1[text()='Transfer Complete!']")
     private WebElement transferCompleteMessage;
 
-    public TransferFundsPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
 
-    public void enterAmount(String amount) {
+    public TransferFundsPage transferAmount(String amount) {
         amountInput.clear();
         amountInput.sendKeys(amount);
+        return this;
     }
 
-    public void selectFromAccount(String accountId) {
+    public TransferFundsPage selectFromAccount(String accountId) {
         Select select = new Select(fromAccountDropdown);
         select.selectByVisibleText(accountId);
+        return this;
     }
 
-    public void selectToAccount(String accountId) {
+    public TransferFundsPage selectToAccount(String accountId) {
         Select select = new Select(toAccountDropdown);
         select.selectByVisibleText(accountId);
+        return this;
     }
 
-    public void clickTransfer() {
+    public TransferFundsPage clickTransfer() {
         transferButton.click();
+        return this;
     }
 
     public boolean isTransferCompleteDisplayed() {
-        return transferCompleteMessage.isDisplayed();
+
+        return waitForCondition(ExpectedConditions.visibilityOf(transferCompleteMessage)).isDisplayed();
+
     }
 }

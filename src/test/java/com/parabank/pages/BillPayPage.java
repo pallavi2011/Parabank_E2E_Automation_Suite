@@ -5,10 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class BillPayPage {
+public class BillPayPage extends BasePage{
     WebDriver driver;
 
     public BillPayPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -46,18 +47,19 @@ public class BillPayPage {
     @FindBy(xpath = "//input[@value='Send Payment']")
     WebElement btnSendPayment;
 
-    public void billPay(String payeeName, String address, String city, String state, String zipCode, String phone, String account, String verifyAccount, String amount, String fromAccount) {
-        txtPayeeName.sendKeys(payeeName);
-        txtPayeeAddress.sendKeys(address);
-        txtPayeeCity.sendKeys(city);
-        txtPayeeState.sendKeys(state);
-        txtPayeeZipCode.sendKeys(zipCode);
-        txtPayeePhone.sendKeys(phone);
-        txtPayeeAccount.sendKeys(account);
-        txtVerifyAccount.sendKeys(verifyAccount);
-        txtAmount.sendKeys(amount);
-        selectFromAccount.sendKeys(fromAccount);
+    public BillPayPage payBill(String payeeName, String address, String city, String state, String zipCode, String phone, String account, String verifyAccount, String amount, String fromAccount) {
+        sendKeys(txtPayeeName,payeeName);
+        sendKeys(txtPayeeAddress,address);
+        sendKeys(txtPayeeCity,city);
+        sendKeys(txtPayeeState,state);
+        sendKeys(txtPayeeZipCode,zipCode);
+        sendKeys(txtPayeePhone,phone);
+        sendKeys(txtPayeeAccount,account);
+        sendKeys(txtVerifyAccount,verifyAccount);
+        sendKeys(txtAmount,amount);
+        sendKeys(selectFromAccount,fromAccount);
         btnSendPayment.click();
+        return this;
     }
 
   

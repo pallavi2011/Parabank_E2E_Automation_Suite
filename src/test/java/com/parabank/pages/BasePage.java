@@ -30,9 +30,57 @@ public class BasePage {
     @FindBy(xpath = "//a[text()='Register']")
     WebElement registerLink;
 
-    public void goToRegisterPage(){
+    @FindBy(xpath = "//a[text()='Open New Account']")
+    WebElement openNewAccountLink;
+
+    @FindBy(xpath="//a[text()='Accounts Overview']")
+    WebElement accountsOverviewLink;
+
+    @FindBy(xpath="//a[text()='Transfer Funds']")
+    WebElement transferFundsLink;
+
+    @FindBy(xpath = "//a[text()='Bill Pay']")
+    WebElement billPayLink;
+
+    @FindBy(xpath = "//a[text()='Find Transactions']")
+    WebElement findTransactionsLink;
+
+    @FindBy(xpath = "//a[text()='Update Contact Info']")
+    WebElement updateContactInfoLink;
+
+    @FindBy(xpath = "//a[text()='Request Loan']")
+    WebElement requestLoanLink;
+
+    @FindBy(xpath="//a[text()='Log Out']")
+    WebElement logoutLink;
+
+
+
+
+
+    public RegistrationPage goToRegisterPage(){
         registerLink.click();
+        return new RegistrationPage(driver);
     }
+    public void goToAccountsOverview(){accountsOverviewLink.click();}
+    public BillPayPage goToBillPay(){
+        billPayLink.click();
+    return new BillPayPage(driver);
+    }
+    public FindTransactionsPage goToFindTransactionsPage(){
+        findTransactionsLink.click();
+    return new FindTransactionsPage(driver);
+    }
+    public OpenAccountPage goToOpenAccountsPage(){
+        openNewAccountLink.click();
+        return new OpenAccountPage(driver);}
+    public void goToRequestLoanPage(){requestLoanLink.click();}
+    public TransferFundsPage goToTransferFundsPage(){
+        transferFundsLink.click();
+        return new TransferFundsPage(driver);}
+
+    public void goToUpdateContactInfoPage(){updateContactInfoLink.click();}
+    public void logout(){logoutLink.click();}
 
     /**
      * The Functional Interface Wait utility from Java 8
